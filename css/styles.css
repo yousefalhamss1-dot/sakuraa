@@ -1,0 +1,1108 @@
+/* ========================================
+   TOKYO GUIDE - EXTERNAL STYLESHEET
+   ========================================
+   Clean, organized CSS for school project
+   Author: Yousef Alhamss
+   ========================================*/
+
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ======================================== */
+:root {
+  /* Color Theme - Sakura Cherry Blossom Palette */
+  --accent: #ff6b9d;               /* sakura pink */
+  --bg: #fef7f0;                   /* warm white/cream background */
+  --text: #2d1b1e;                 /* dark brown text */
+  --muted: #8b5a5c;                /* muted rose */
+  --panel: rgba(255,245,248,0.85); /* soft pink-tinted white panels */
+  --sidebar-bg: rgba(255,240,245,0.96); /* slightly pinker sidebar */
+  
+  /* Layout Variables */
+  --sidebar-width: 260px;
+  --max-width: 1100px;
+  --header-height: 80px;
+  --footer-height: 85px;
+  
+  /* Header images */
+  --title-bg-image: url('../assets/sakura.jpg');
+}
+
+/* ========================================
+   CSS RESET & BASE STYLES
+   ======================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base typography size */
+}
+
+/* Responsive typography scaling */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Segoe UI, Roboto, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+body {
+  margin-top: 0;
+  padding-top: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h1 {
+  color: var(--accent);
+  background-color: rgba(255,107,157,0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+h2 {
+  background-color: rgba(255,245,248,0.3);
+  padding: 0.3rem;
+}
+
+.panel h3 {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 0;
+  color: var(--text);
+  text-shadow: 0 1px 0 rgba(255,107,157,0.1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  transform: scale(1);
+}
+
+.panel h3:hover {
+  transform: scale(1.05);
+  color: var(--accent);
+}
+
+.panel p,
+.panel li,
+.panel ul li,
+.panel ol li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.panel ul,
+.panel ol {
+  font-size: 1rem;
+}
+
+ul,
+ol {
+  background-color: rgba(255,107,157,0.05);
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.panel p {
+  background-color: rgba(255,107,157,0.05);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  text-align: left;
+  word-spacing: normal;
+}
+
+/* ========================================
+   MAIN LAYOUT STRUCTURE
+   ======================================== */
+.app {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.app,
+.main,
+.header-with-image {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  padding: 2rem 1rem 1rem 1rem;
+  flex-grow: 1;
+}
+
+/* ========================================
+   SIDEBAR NAVIGATION
+   ======================================== */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  border-right: 1px solid rgba(255,107,157,0.12);
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  box-shadow: 4px 0 24px rgba(255,107,157,0.08);
+  z-index: 100;
+}
+
+#sidebar {
+  background: linear-gradient(135deg, var(--sidebar-bg), rgba(255,240,245,0.8));
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand h1 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.brand-title {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.sidebar nav {
+  margin-top: 1rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-row-gap: 0.5rem;
+  grid-auto-flow: row;
+}
+
+.sidebar nav li {
+  margin: 0.35rem 0;
+}
+
+.sidebar a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  transform: translateX(0);
+}
+
+.sidebar a:hover {
+  color: var(--text);
+  background: rgba(255,107,157,0.08);
+  text-shadow: 0 1px 2px rgba(255,107,157,0.2);
+  transform: translateX(4px) scale(1.02);
+}
+
+.sidebar a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   MOBILE NAVIGATION
+   ======================================== */
+.nav-checkbox {
+  display: none;
+}
+
+.nav-toggle {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+}
+
+.nav-toggle:hover {
+  background: #e55a8a;
+  transform: scale(1.05);
+}
+
+.nav-toggle:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+#nav-open {
+  background-color: var(--accent);
+  color: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#nav-open:hover {
+  transform: rotate(90deg) scale(1.1);
+  background-color: var(--muted);
+}
+
+#nav-close {
+  background-color: rgba(255,107,157,0.2);
+  color: var(--accent);
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+#nav-close:hover {
+  transform: rotate(180deg);
+  color: var(--text);
+}
+
+/* ========================================
+   PAGE HEADER
+   ======================================== */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  background: transparent;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Header with background image */
+.header-with-image {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  min-height: 220px;
+  height: 220px;
+  background-color: var(--bg);
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.header-with-image .header-media {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/sakura.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.header-with-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(255,245,248,0.25), rgba(255,245,248,0.25));
+  z-index: 1;
+}
+
+.header-with-image .header-content {
+  position: relative;
+  z-index: 3;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.header-with-image .header-content h2 {
+  color: var(--text);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* Title background styling */
+.title-bg {
+  display: inline-block;
+  padding: 0;
+  border-radius: 4px;
+  background-image: var(--title-bg-image);
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+  width: auto;
+  max-width: none;
+}
+
+.title-bg .h2-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transform: translateZ(0);
+}
+
+.title-bg .title-text {
+  position: relative;
+  z-index: 4;
+  color: var(--text);
+  display: block;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255,245,248,0.85);
+  border-radius: 4px;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(255,107,157,0.3);
+  text-align: center;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   CONTENT PANELS
+   ======================================== */
+.panel {
+  background: var(--panel);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(255,107,157,0.12);
+  border: 1px solid rgba(255,107,157,0.08);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  scroll-margin-top: calc(var(--header-height) + 12px);
+  animation: pageSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(255,107,157,0.18);
+}
+
+.panel ul li,
+.panel ol li {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.panel ul li:last-child,
+.panel ol li:last-child {
+  margin-bottom: 0;
+}
+
+/* Specific panel styling */
+#overview,
+#practical,
+#attractions,
+#food,
+#home {
+  background-image: radial-gradient(circle at top right, rgba(255,107,157,0.05), transparent);
+}
+
+.panel.overview,
+.panel:has(.attraction-image),
+.panel:has(.food-image),
+.panel:has(.home-image) {
+  position: relative;
+  min-height: 400px;
+  overflow: visible;
+}
+
+/* ========================================
+   IMAGES & MEDIA
+   ======================================== */
+.section-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255,107,157,0.15);
+  border: 2px solid rgba(255,107,157,0.1);
+  margin-top: 1rem;
+  transition: all 0.4s ease;
+  transform: translateY(0);
+}
+
+.section-image:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(255,107,157,0.3);
+  border-color: var(--accent);
+}
+
+.tokyo-image {
+  max-width: 350px;
+  max-height: 260px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255,107,157,0.15);
+  border: 2px solid rgba(255,107,157,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tokyo-image:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 8px 24px rgba(255,107,157,0.25);
+}
+
+/* Overview images positioned below text */
+.overview-image {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem auto 1rem auto;
+  clear: both;
+  z-index: 2;
+}
+
+/* Multiple images in overview section */
+.overview-image img {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  height: auto;
+}
+
+.attraction-image {
+  float: right;
+  margin: 0 0 1rem 2rem;
+  clear: both;
+  z-index: 2;
+}
+
+.attraction-image .section-image {
+  max-width: 350px;
+  max-height: 250px;
+}
+
+.food-image {
+  float: right !important;
+  margin: 0 0 1rem 2rem !important;
+  width: auto !important;
+  display: flex !important;
+  gap: 0.8rem !important;
+  flex-wrap: nowrap !important;
+  position: relative !important;
+  clear: both !important;
+}
+
+.food-image .section-image {
+  max-width: 320px !important;
+  max-height: 240px !important;
+  display: block !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+.home-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  z-index: 2;
+}
+
+.home-image .section-image {
+  max-width: 380px;
+  max-height: 285px;
+}
+
+/* ========================================
+   ANIMATIONS & TRANSITIONS
+   ======================================== */
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ripple {
+  to {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.site-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  grid-template-areas: 
+    "contact author"
+    "copyright copyright";
+  padding: 1rem;
+  border-top: 1px solid rgba(255,107,157,0.12);
+  background: transparent;
+  text-align: center;
+}
+
+.site-footer p:first-child {
+  grid-area: contact;
+}
+
+.site-footer p:last-child {
+  grid-area: author;
+}
+
+.site-footer p {
+  margin: 0.25rem;
+  color: var(--muted);
+  font-style: italic;
+  text-decoration: underline;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.visually-hidden {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px,1px,1px,1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Desktop layout adjustments */
+@media (min-width: 769px) {
+  .nav-toggle {
+    display: none;
+  }
+  
+  .sidebar {
+    transform: none;
+    transition: none;
+    z-index: 6;
+  }
+
+  .header-with-image {
+    width: calc(100vw - var(--sidebar-width));
+    left: var(--sidebar-width);
+    right: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .main {
+    padding-top: 220px;
+  }
+  
+  .overview-image,
+  .attraction-image,
+  .food-image,
+  .home-image {
+    display: block;
+  }
+
+  /* Multi-column layout for practical section */
+  .panel.practical {
+    column-count: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid rgba(255,107,157,0.2);
+  }
+  
+  .panel.practical h3 {
+    column-span: all;
+    margin-bottom: 1.5rem;
+  }
+  
+  .panel.practical p {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Medium screens - title optimization */
+@media (min-width: 700px) {
+  .header-content {
+    align-items: center;
+  }
+  
+  .title-bg {
+    width: 100%;
+    min-width: 320px;
+  }
+}
+
+/* Tablet range */
+@media (min-width: 481px) and (max-width: 768px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .main {
+    margin-left: 220px;
+  }
+  
+  .header-with-image {
+    height: 240px;
+  }
+  
+  .title-bg .title-text {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .panel {
+    padding: 1rem;
+    margin: 0.8rem;
+  }
+  
+  /* Tablet image sizes */
+  .attraction-image .section-image {
+    max-width: 280px;
+    max-height: 210px;
+  }
+  
+  .food-image .section-image {
+    max-width: 260px;
+    max-height: 195px;
+  }
+  
+  .home-image .section-image {
+    max-width: 75%;
+    height: auto;
+  }
+  
+  .tokyo-image {
+    max-width: 280px;
+    max-height: 200px;
+  }
+  
+  /* Tablet overview images side-by-side */
+  .overview-image {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .overview-image .tokyo-image {
+    flex: 1;
+    max-width: 45%;
+    min-width: 200px;
+  }
+}
+
+/* Ultra-wide screens optimization */
+@media (min-width: 1920px) {
+  .panel {
+    padding: 2rem;
+    margin: 1.5rem auto;
+    max-width: 1200px;
+  }
+  
+  .panel h3 {
+    font-size: 1.6rem;
+  }
+  
+  .panel p,
+  .panel li {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  .attraction-image .section-image {
+    max-width: 500px;
+    max-height: 375px;
+  }
+  
+  .food-image .section-image {
+    max-width: 450px;
+    max-height: 340px;
+  }
+  
+  .home-image .section-image {
+    max-width: 475px;
+    max-height: 360px;
+  }
+}
+
+/* Comprehensive mobile styles - consolidated from multiple @media blocks */
+@media (max-width: 768px) {
+  /* Mobile navigation toggle button */
+  .nav-toggle {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+  }
+  
+  /* Mobile sidebar positioning and animation */
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+  }
+  
+  /* CSS-only toggle functionality */
+  .nav-checkbox:checked ~ .sidebar {
+    transform: translateX(0);
+    box-shadow: 2px 0 15px rgba(0,0,0,0.4);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+  }
+  
+  /* Navigation button visibility control */
+  #nav-close {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  #nav-open {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+  
+  .nav-checkbox:checked ~ .main #nav-open {
+    display: none;
+    opacity: 0;
+  }
+  
+  .nav-checkbox:checked ~ .sidebar #nav-close {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s ease 0.2s both;
+  }
+  
+  /* Backdrop blur when sidebar is open */
+  .nav-checkbox:checked ~ .main {
+    filter: blur(1px);
+    transition: filter 0.3s ease;
+  }
+  
+  /* Enhanced mobile navigation link styling */
+  .sidebar nav a {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-left: 3px solid transparent;
+  }
+  
+  .sidebar nav a:focus {
+    outline: 2px solid #e55a8a;
+    outline-offset: 2px;
+  }
+  
+  .sidebar nav a:hover {
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+  }
+  
+  .sidebar nav a:active {
+    background: rgba(255,107,157,0.2);
+    transform: translateX(8px) scale(0.97);
+    transition: all 0.15s ease;
+    border-left: 3px solid var(--accent);
+  }
+  
+  /* Ripple effect on navigation tap */
+  .sidebar nav a:active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,107,157,0.3);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    animation: ripple 0.6s ease-out;
+  }
+  
+  /* Main area adjustments for mobile */
+  .main {
+    margin-left: 0;
+  }
+  
+  /* Mobile header and footer height adjustments */
+  :root {
+    --header-height: 70px;
+    --footer-height: 75px;
+  }
+  
+  /* Panel adjustments for mobile */
+  .panel {
+    padding: 1rem;
+    min-height: calc(100svh - var(--header-height) - var(--footer-height));
+  }
+  
+  /* Mobile image positioning - force images below text */
+  .attraction-image,
+  .food-image,
+  .overview-image,
+  .home-image {
+    position: relative;
+    text-align: center;
+    margin: 2rem auto 0 auto;
+    width: 100%;
+    clear: both;
+    display: block;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: none;
+  }
+  
+  .nav-checkbox:checked ~ .sidebar {
+    transform: translateX(0);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+  }
+  
+  .main {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .header-with-image {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+  }
+  
+  .title-bg .title-text {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .panel {
+    padding: 0.8rem;
+    margin: 0.5rem;
+    border-radius: 6px;
+    position: relative;
+  }
+  
+  .panel h3 {
+    font-size: 1.1rem;
+  }
+  
+  .panel p, .panel li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .attraction-image .section-image {
+    max-width: 240px;
+    max-height: 180px;
+  }
+  
+  .food-image .section-image {
+    max-width: 200px;
+    max-height: 150px;
+  }
+  
+  .food-image {
+    float: none !important;
+    margin: 1rem auto !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+  }
+  
+  .home-image .section-image {
+    max-width: 90% !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  .tokyo-image {
+    max-width: 250px;
+    max-height: 180px;
+    margin: 2rem auto 0;
+    display: block;
+  }
+  
+  .attraction-image .section-image,
+  .food-image .section-image,
+  .home-image .section-image,
+  .tokyo-image {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* Extra small phones - refined sizing */
+@media (max-width: 360px) {
+  .attraction-image .section-image {
+    max-width: 200px;
+    max-height: 150px;
+  }
+  
+  .food-image .section-image {
+    max-width: 190px;
+    max-height: 140px;
+  }
+  
+  .home-image .section-image {
+    max-width: 85% !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  .tokyo-image {
+    max-width: 210px;
+    max-height: 150px;
+  }
+  
+  .panel {
+    margin: 0.3rem;
+    padding: 0.6rem;
+  }
+}
+
+/* Very small phones - maximum safety */
+@media (max-width: 320px) {
+  .attraction-image .section-image {
+    max-width: 180px;
+    max-height: 135px;
+  }
+  
+  .food-image .section-image {
+    max-width: 170px;
+    max-height: 125px;
+  }
+  
+  .home-image .section-image {
+    max-width: 80% !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  .tokyo-image {
+    max-width: 190px;
+    max-height: 135px;
+  }
+  
+  .panel {
+    margin: 0.2rem;
+    padding: 0.5rem;
+  }
+}
+
+/* ========================================
+   END OF STYLESHEET
+   ======================================== */
